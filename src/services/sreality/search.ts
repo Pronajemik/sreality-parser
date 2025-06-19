@@ -1,5 +1,5 @@
 import { shortDate } from "../utils/date.ts";
-import { API_ENDPOINT, httpCall } from "../utils/http.ts";
+import { API_ENDPOINT, request } from "../utils/http.ts";
 import {
 	FILTER_BUILDING_TYPE,
 	FILTER_BUILDING_TYPE_ID,
@@ -92,7 +92,7 @@ function createSearchUrl(params: FilterOptions) {
 export async function searchEstates(
 	params: FilterOptions,
 ): Promise<EstatePreview[]> {
-	const response = await httpCall<SearchResponse>({
+	const response = await request<SearchResponse>({
 		url: createSearchUrl(params),
 	});
 	if (!response.ok) {

@@ -1,6 +1,6 @@
 export const API_ENDPOINT = "https://www.sreality.cz/api";
 
-export async function httpCall<T>(args: {
+export async function request<T>(args: {
 	url: URL | string;
 	appendToApi?: boolean;
 }): Promise<
@@ -10,8 +10,8 @@ export async function httpCall<T>(args: {
 	try {
 		const uri = `${appendToApi ? API_ENDPOINT : ""}${url}`;
 		const response = await fetch(uri, {
-			headers: Deno.env.get("SREALITY_AUTH")
-				? { Cookie: `ds=${Deno.env.get("SREALITY_AUTH")}` }
+			headers: Bun.env.SREALITY_AUTH
+				? { Cookie: `ds=${Bun.env.SREALITY_AUTH}` }
 				: {},
 		});
 		const result = await response.json();

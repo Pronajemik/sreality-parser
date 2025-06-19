@@ -17,7 +17,8 @@ agent-RK-paid ::= "\\"is_provision_RK_paid\\":" boolean
 agent-RK ::= "\\"provision_RK_price\\":" number`;
 
 export async function generate(prompt: string, json = true) {
-	const request = await fetch(`http://127.0.0.1:8181/v1/completions`, {
+	if (!Bun.env.LLM_API_URL) throw new Error("LLM_API_URL is not set");
+	const request = await fetch(Bun.env.LLM_API_URL, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({

@@ -1,6 +1,9 @@
-import { parseEstate } from "./parser/parser.ts";
-import { type EstateDetails, fetchEstateDetails } from "./sreality/details.ts";
-import { searchEstates } from "./sreality/search.ts";
+import { parseEstate } from "./services/parser.ts";
+import {
+	type EstateDetails,
+	fetchEstateDetails,
+} from "./services/sreality/details.ts";
+import { searchEstates } from "./services/sreality/search.ts";
 
 for (let page = 1; page <= 50; ++page) {
 	try {
@@ -33,7 +36,7 @@ for (let page = 1; page <= 50; ++page) {
 			}
 		}
 
-		await Deno.writeFile(
+		await Bun.write(
 			`./data/${page}.json`,
 			new TextEncoder().encode(JSON.stringify(storage)),
 		);
