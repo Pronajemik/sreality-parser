@@ -1,0 +1,17 @@
+{
+	"name": "sreality-parser",
+	"module": "src/index.ts",
+	"type": "module",
+	"scripts": {
+		"format": "biome lint --write --unsafe; biome format --write"
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"@biomejs/biome": "^2.0.0"
+	}
+}
