@@ -1,5 +1,5 @@
-import { shortDate } from "../utils/date.ts";
-import { API_ENDPOINT, request } from "../utils/http.ts";
+import { shortDate } from "../../utils/date.ts";
+import { API_ENDPOINT, request } from "../requests.ts";
 import {
 	FILTER_BUILDING_TYPE,
 	FILTER_BUILDING_TYPE_ID,
@@ -61,7 +61,7 @@ function createSearchUrl(params: FilterOptions) {
 	];
 
 	for (const [param, ids, value] of filters) {
-		if (value) {
+		if (value && Array.isArray(value)) {
 			url.searchParams.append(param, value.map((type) => ids[type]).join("|"));
 		}
 	}

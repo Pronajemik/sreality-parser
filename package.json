@@ -5,9 +5,6 @@
 	"scripts": {
 		"format": "biome lint --write --unsafe; biome format --write"
 	},
-	"devDependencies": {
-		"@types/bun": "latest"
-	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"
 	},

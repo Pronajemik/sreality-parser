@@ -36,7 +36,7 @@ for (let page = 1; page <= 50; ++page) {
 			}
 		}
 
-		await Bun.write(
+		await Deno.writeFile(
 			`./data/${page}.json`,
 			new TextEncoder().encode(JSON.stringify(storage)),
 		);

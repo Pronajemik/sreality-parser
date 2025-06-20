@@ -31,7 +31,7 @@ export async function fetchEstateRoute(args: {
 	});
 	if (!response.ok) {
 		console.log({ error: response.error }, "Estate distance request failed");
-		process.exit(1);
+		Deno.exit(1);
 	}
 
 	const duration =
@@ -55,7 +55,7 @@ export async function fetchEstateDetails(args: {
 	});
 	if (!response.ok) {
 		console.log({ error: response.error }, "Estate details fetch failed");
-		process.exit(1);
+		Deno.exit(1);
 	}
 
 	const estateId = response.data?.recommendations_data?.hash_id;

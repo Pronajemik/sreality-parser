@@ -11,14 +11,15 @@ fees-1 ::= "\\"fees_base\\":" number
 fees-2 ::= "\\"fees_2_person\\":" number
 deposit-paid ::= "\\"is_deposit_paid\\":" boolean
 deposit ::= "\\"deposit_price\\":" number
-electricity-paid ::= "\\"is_electricity_paid\\":" boolean
+electricity-paid ::= "\\"electricity_on_tenant\\":" boolean
 electricity-price ::= "\\"electricity_price\\":" number
 agent-RK-paid ::= "\\"is_provision_RK_paid\\":" boolean
 agent-RK ::= "\\"provision_RK_price\\":" number`;
 
 export async function generate(prompt: string, json = true) {
-	if (!Bun.env.LLM_API_URL) throw new Error("LLM_API_URL is not set");
-	const request = await fetch(Bun.env.LLM_API_URL, {
+	const URL = Deno.env.get('LLM_API_URL')
+	if (!URL) throw new Error("LLM_API_URL is not set");
+	const request = await fetch(URL, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({

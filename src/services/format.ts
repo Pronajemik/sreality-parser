@@ -1,4 +1,4 @@
-import type { EstateDetails } from "../sreality/details.ts";
+import type { EstateDetails } from "./sreality/details.ts";
 
 const BASE_PRICE_PREFIX = "Základní cena: ";
 const PRICE_HINT_PREFIX = "Cenový tip: ";

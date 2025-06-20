@@ -1,6 +1,6 @@
-import type { EstateDetails } from "../sreality/details.ts";
-import { generate } from "../utils/ai.ts";
-import { getFullEstateDescription } from "../utils/format.ts";
+import { generate } from "./ai.ts";
+import { getFullEstateDescription } from "./format.ts";
+import type { EstateDetails } from "./sreality/details.ts";
 
 const getPrompt = (step: number, description: string) =>
 	`# Instructions
@@ -15,7 +15,7 @@ ${
 		? `Write about each field. For each field write 1-2 sentences explaining what is said in the description about it and how can you infer its value. Write what value do you think you should use for each listed field.
 - If description does not mention the field at all, it is \`null\``
 		: `- You must respond with a JSON object:
-\`\`\`{"rent_base": number | null, "rent_2_person": number | null, "fees_base": number | null, "fees_2_person": number | null, "deposit": number | null, "provision_RK": number | null, "is_electricity_paid": boolean | null}\`\`\``
+\`\`\`{"rent_base": number | null, "rent_2_person": number | null, "fees_base": number | null, "fees_2_person": number | null, "deposit": number | null, "provision_RK": number | null, "electricity_on_tenant": boolean | null}\`\`\``
 }
 
 # Fields
@@ -27,8 +27,8 @@ ${
 - "deposit_price": actual deposit price if it's paid. Keywords "zaloha", "kauce", "deposit".
 - "is_provision_RK_paid": whether one-time real estate agent payment is paid by tenant additionally or not. Keywords "RK", "provize".
 - "provision_RK_price": actual price of real estate agent payment if it's paid. Keywords "RK", "provize".
-- "is_electricity_paid": whether electricity is paid by tenant additionally or not. Keywords "elektřina", "energie".
-- "electricity_price": actual electricity price (if electricity isnot paid then there is no price. If there is a price, electricity is paid). Keywords "elektřina", "energie".
+- "electricity_on_tenant": whether electricity is paid by tenant additionally or not. Keywords "elektřina", "energie".
+- "electricity_price": actual electricity price (if electricity is not paid then there is no price. If there is a price, electricity is paid by tenant). Keywords "elektřina", "energie".
 
 
 # Apartment description

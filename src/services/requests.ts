@@ -10,8 +10,8 @@ export async function request<T>(args: {
 	try {
 		const uri = `${appendToApi ? API_ENDPOINT : ""}${url}`;
 		const response = await fetch(uri, {
-			headers: Bun.env.SREALITY_AUTH
-				? { Cookie: `ds=${Bun.env.SREALITY_AUTH}` }
+			headers: Deno.env.get('SREALITY_AUTH')
+				? { Cookie: `ds=${Deno.env.get('SREALITY_AUTH')}` }
 				: {},
 		});
 		const result = await response.json();
